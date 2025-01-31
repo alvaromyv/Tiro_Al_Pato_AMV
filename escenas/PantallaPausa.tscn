@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0wt4kmjicoob"]
+
+[ext_resource type="Script" path="res://scripts/pantalla_pausa.gd" id="1_ly6dy"]
+[ext_resource type="Theme" uid="uid://ccr3xj3644dmh" path="res://menu.tres" id="2_7p283"]
+[ext_resource type="AudioStream" uid="uid://bmv3mq1jrr6rh" path="res://assets/sonidos/click.ogg" id="3_c4tbn"]
+
+[node name="PantallaPausa" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ly6dy")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_left = 357.0
+offset_top = 216.0
+offset_right = 740.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_7p283")
+alignment = 1
+
+[node name="lbl_juego_pausado" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7p283")
+theme_type_variation = &"GraphFrameTitleLabel"
+text = "JUEGO PAUSADO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_continuar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTINUAR"
+
+[node name="btn_salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SALIR
+"
+
+[node name="Clic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_c4tbn")
+
+[connection signal="pressed" from="VBoxContainer/btn_continuar" to="." method="_on_btn_continuar_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_salir" to="." method="_on_btn_salir_pressed"]

@@ -1,0 +1,241 @@
+[gd_scene load_steps=15 format=3 uid="uid://b8kck8w3nq3av"]
+
+[ext_resource type="Script" path="res://scripts/juego.gd" id="1_8vko3"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="2_dpeer"]
+[ext_resource type="PackedScene" uid="uid://cb7ysp8rd3ro1" path="res://escenas/Arma.tscn" id="2_qragp"]
+[ext_resource type="Texture2D" uid="uid://mcstrji2fkwx" path="res://assets/escenario/water1.png" id="2_wag7g"]
+[ext_resource type="Texture2D" uid="uid://bmvvnoxnppv1d" path="res://assets/escenario/water2.png" id="4_svgni"]
+[ext_resource type="Script" path="res://scripts/almacen_objetivos.gd" id="4_uo816"]
+[ext_resource type="Texture2D" uid="uid://bxx6065jphnwb" path="res://assets/escenario/grass2.png" id="4_yysb4"]
+[ext_resource type="AudioStream" uid="uid://wtfuon1f5y45" path="res://assets/sonidos/desgraciaus_coches_choque.mp3" id="5_gedig"]
+[ext_resource type="Texture2D" uid="uid://d80n1uh2n0iq" path="res://assets/escenario/backgroundEmpty.png" id="6_6vru2"]
+[ext_resource type="Texture2D" uid="uid://cadmv268f76g7" path="res://assets/escenario/bg_wood.png" id="6_sh5bu"]
+[ext_resource type="Theme" uid="uid://ccr3xj3644dmh" path="res://menu.tres" id="8_ed673"]
+[ext_resource type="Texture2D" uid="uid://bxb1bomd8fxh4" path="res://assets/objetivos/duck_outline_target_yellow.png" id="9_rev3d"]
+[ext_resource type="PackedScene" uid="uid://c0wt4kmjicoob" path="res://escenas/PantallaPausa.tscn" id="10_4pnnf"]
+[ext_resource type="PackedScene" uid="uid://b8plvys886xyh" path="res://escenas/PantallaFin.tscn" id="10_x3cri"]
+
+[node name="Juego" type="Node2D"]
+process_mode = 1
+z_index = 1
+script = ExtResource("1_8vko3")
+
+[node name="Mar1" type="TextureRect" parent="."]
+z_index = -2
+offset_top = 442.0
+offset_right = 1152.0
+offset_bottom = 665.0
+scale = Vector2(1, 0.5)
+texture = ExtResource("4_svgni")
+stretch_mode = 1
+
+[node name="Mar2" type="TextureRect" parent="."]
+z_index = -3
+offset_top = 389.0
+offset_right = 1152.0
+offset_bottom = 613.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("2_wag7g")
+stretch_mode = 1
+
+[node name="Mar3" type="TextureRect" parent="."]
+z_index = -4
+offset_top = 336.0
+offset_right = 1152.0
+offset_bottom = 560.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("4_svgni")
+stretch_mode = 1
+
+[node name="Campo" type="TextureRect" parent="."]
+z_index = -5
+offset_top = 250.0
+offset_right = 1152.0
+offset_bottom = 375.0
+texture = ExtResource("4_yysb4")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Madera" type="TextureRect" parent="."]
+z_index = 1000
+offset_top = 523.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("6_sh5bu")
+expand_mode = 1
+
+[node name="Fondo" type="TextureRect" parent="."]
+z_index = -15
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 1152.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.5)
+texture = ExtResource("6_6vru2")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_dpeer")
+
+[node name="Municion" type="HBoxContainer" parent="CanvasLayer/HUD"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_ed673")
+theme_override_constants/separation = 5
+
+[node name="Dificultad" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -122.0
+offset_right = 213.0
+grow_vertical = 0
+alignment = 1
+
+[node name="lbl_dificultad" type="Label" parent="CanvasLayer/HUD/Dificultad"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_ed673")
+theme_type_variation = &"GraphFrameTitleLabel"
+text = "DIFICULTAD"
+vertical_alignment = 1
+
+[node name="lbl_dificultad_elegida" type="Label" parent="CanvasLayer/HUD/Dificultad"]
+layout_mode = 2
+theme = ExtResource("8_ed673")
+theme_override_colors/font_outline_color = Color(0.203922, 0.596078, 0.858824, 1)
+text = "FACIL"
+horizontal_alignment = 1
+
+[node name="Puntuacion" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -121.0
+offset_right = 93.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="lbl_puntuacion" type="Label" parent="CanvasLayer/HUD/Puntuacion"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_ed673")
+theme_type_variation = &"GraphFrameTitleLabel"
+text = "PUNTOS"
+vertical_alignment = 1
+
+[node name="lbl_contador_puntos" type="Label" parent="CanvasLayer/HUD/Puntuacion"]
+layout_mode = 2
+theme = ExtResource("8_ed673")
+theme_override_colors/font_outline_color = Color(0.203922, 0.596078, 0.858824, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="Abatidos" type="HBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 168.0
+offset_bottom = 90.0
+theme = ExtResource("8_ed673")
+
+[node name="Pato" type="TextureRect" parent="CanvasLayer/HUD/Abatidos"]
+layout_mode = 2
+texture = ExtResource("9_rev3d")
+expand_mode = 2
+
+[node name="lbl_contador_abatidos" type="Label" parent="CanvasLayer/HUD/Abatidos"]
+layout_mode = 2
+theme = ExtResource("8_ed673")
+theme_override_colors/font_outline_color = Color(0.203922, 0.596078, 0.858824, 1)
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tiempo" type="HBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 20.0
+offset_right = 43.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme = ExtResource("8_ed673")
+
+[node name="lbl_tiempo_restante" type="Label" parent="CanvasLayer/HUD/Tiempo"]
+layout_mode = 2
+theme = ExtResource("8_ed673")
+theme_override_colors/font_outline_color = Color(0.203922, 0.596078, 0.858824, 1)
+theme_override_font_sizes/font_size = 60
+text = "00"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Pausa" type="CanvasLayer" parent="."]
+
+[node name="PantallaFin" parent="Pausa" instance=ExtResource("10_x3cri")]
+visible = false
+
+[node name="PantallaPausa" parent="Pausa" instance=ExtResource("10_4pnnf")]
+visible = false
+
+[node name="Arma" parent="." instance=ExtResource("2_qragp")]
+z_index = 1000
+position = Vector2(570, 233)
+
+[node name="Almacen" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_uo816")
+
+[node name="Musica" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("5_gedig")
+volume_db = -15.0
+autoplay = true
+parameters/looping = false
+
+[node name="Generador" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Duracion" type="Timer" parent="."]
+
+[connection signal="timeout" from="Generador" to="." method="_on_generar_enemigo_timeout"]
+[connection signal="timeout" from="Duracion" to="." method="_on_duracion_timeout"]

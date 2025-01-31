@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://5wowesyhckw8"]
+
+[ext_resource type="Script" path="res://scripts/pato.gd" id="1_1fap6"]
+[ext_resource type="Texture2D" uid="uid://cjyuv475d72xr" path="res://assets/objetivos/duck_outline_target_brown.png" id="2_e151q"]
+[ext_resource type="Texture2D" uid="uid://dvi3t2p6w7xwf" path="res://assets/soportes/stick_wood_outline.png" id="3_uexkv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84i4f"]
+radius = 52.4976
+
+[node name="Pato" type="Area2D"]
+script = ExtResource("1_1fap6")
+
+[node name="Apariencia" type="Sprite2D" parent="."]
+position = Vector2(-3, 20)
+texture = ExtResource("2_e151q")
+offset = Vector2(3, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.664349
+shape = SubResource("CircleShape2D_84i4f")
+
+[node name="Soporte" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 117)
+texture = ExtResource("3_uexkv")
+
+[connection signal="area_entered" from="." to="." method="_on_objetivo_colision_entered"]

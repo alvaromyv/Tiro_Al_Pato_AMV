@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8plvys886xyh"]
+
+[ext_resource type="Script" path="res://scripts/pantalla_fin.gd" id="1_6fws4"]
+[ext_resource type="Theme" uid="uid://ccr3xj3644dmh" path="res://menu.tres" id="2_e4i64"]
+[ext_resource type="Texture2D" uid="uid://im64nbjev4i2" path="res://assets/menu/button_round_depth_gradient.png" id="2_j67ih"]
+[ext_resource type="Texture2D" uid="uid://xlivwvc2jwbe" path="res://assets/menu/button_round_line.png" id="3_5e6b0"]
+[ext_resource type="Texture2D" uid="uid://c5usa2aiemo2p" path="res://assets/menu/button_round_flat.png" id="4_pnqm5"]
+[ext_resource type="Texture2D" uid="uid://c3dk1rskgru25" path="res://assets/menu/icon_repeat_light.png" id="6_vwilb"]
+[ext_resource type="Texture2D" uid="uid://ch85xxqe6mlif" path="res://assets/menu/icon_arrow_down_light.png" id="7_x3bcc"]
+[ext_resource type="AudioStream" uid="uid://bmv3mq1jrr6rh" path="res://assets/sonidos/click.ogg" id="8_vu5eu"]
+
+[node name="PantallaFin" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6fws4")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -64.0
+offset_right = 130.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_e4i64")
+
+[node name="lbl_puntuacion_obtenida" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "PUNTUACION OBTENIDA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_contador_puntos" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.203922, 0.596078, 0.858824, 1)
+theme_override_font_sizes/font_size = 80
+text = "0 PTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="btn_reiniciar" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_j67ih")
+texture_pressed = ExtResource("3_5e6b0")
+texture_hover = ExtResource("4_pnqm5")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/btn_reiniciar"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -42.0
+offset_right = 43.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vwilb")
+
+[node name="btn_continuar" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_j67ih")
+texture_pressed = ExtResource("3_5e6b0")
+texture_hover = ExtResource("4_pnqm5")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/btn_continuar"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -37.0
+offset_right = 40.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_x3bcc")
+
+[node name="Clic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_vu5eu")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/btn_reiniciar" to="." method="_on_btn_reiniciar_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/btn_continuar" to="." method="_on_btn_volver_pressed"]

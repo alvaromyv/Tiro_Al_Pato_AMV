@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://cox1oxphiacwi"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_doouv"]
+[ext_resource type="Texture2D" uid="uid://bmvvnoxnppv1d" path="res://assets/escenario/water2.png" id="2_cuhle"]
+[ext_resource type="Theme" uid="uid://ccr3xj3644dmh" path="res://menu.tres" id="3_64wwf"]
+[ext_resource type="Texture2D" uid="uid://mcstrji2fkwx" path="res://assets/escenario/water1.png" id="3_r0tx5"]
+[ext_resource type="Texture2D" uid="uid://bxx6065jphnwb" path="res://assets/escenario/grass2.png" id="4_xb6i4"]
+[ext_resource type="Texture2D" uid="uid://cadmv268f76g7" path="res://assets/escenario/bg_wood.png" id="5_a3sfe"]
+[ext_resource type="Texture2D" uid="uid://d80n1uh2n0iq" path="res://assets/escenario/backgroundEmpty.png" id="6_i0brg"]
+[ext_resource type="FontFile" uid="uid://2afrstrnlcnc" path="res://assets/fuente/Frogie-Regular.ttf" id="8_mu5lm"]
+[ext_resource type="AudioStream" uid="uid://bmv3mq1jrr6rh" path="res://assets/sonidos/click.ogg" id="9_71r4k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mm4qg"]
+font = ExtResource("8_mu5lm")
+font_size = 25
+
+[node name="Menú" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_doouv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Mar1" type="TextureRect" parent="CanvasLayer"]
+z_index = -2
+offset_top = 442.0
+offset_right = 1152.0
+offset_bottom = 665.0
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_cuhle")
+stretch_mode = 1
+
+[node name="Mar2" type="TextureRect" parent="CanvasLayer"]
+z_index = -3
+offset_top = 389.0
+offset_right = 1152.0
+offset_bottom = 613.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("3_r0tx5")
+stretch_mode = 1
+
+[node name="Mar3" type="TextureRect" parent="CanvasLayer"]
+z_index = -4
+offset_top = 336.0
+offset_right = 1152.0
+offset_bottom = 560.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("2_cuhle")
+stretch_mode = 1
+
+[node name="Campo" type="TextureRect" parent="CanvasLayer"]
+z_index = -5
+offset_top = 250.0
+offset_right = 1152.0
+offset_bottom = 375.0
+texture = ExtResource("4_xb6i4")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Madera" type="TextureRect" parent="CanvasLayer"]
+z_index = 1000
+offset_top = 523.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("5_a3sfe")
+expand_mode = 1
+
+[node name="Fondo" type="TextureRect" parent="CanvasLayer"]
+z_index = -15
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.5)
+texture = ExtResource("6_i0brg")
+stretch_mode = 1
+
+[node name="Título" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.0
+offset_top = -277.0
+offset_right = 307.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_64wwf")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
+theme_override_font_sizes/font_size = 110
+text = "TIRO AL PATO"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -117.0
+offset_right = 175.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_64wwf")
+
+[node name="Jugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_64wwf")
+text = "JUGAR"
+
+[node name="Opciones" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_64wwf")
+text = "OPCIONES"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_64wwf")
+text = "SALIR"
+
+[node name="by Álvaro Moyano Vila" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -75.0
+offset_right = 250.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Creado y diseñado por Álvaro Moyano Vila"
+label_settings = SubResource("LabelSettings_mm4qg")
+horizontal_alignment = 1
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("9_71r4k")
+
+[connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

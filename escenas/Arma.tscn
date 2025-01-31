@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb7ysp8rd3ro1"]
+
+[ext_resource type="Texture2D" uid="uid://blxdrxeywocox" path="res://assets/armas/rifle.png" id="1_wk0ey"]
+[ext_resource type="Script" path="res://scripts/arma.gd" id="2_oedhu"]
+[ext_resource type="Texture2D" uid="uid://b6lboq4vb7ms7" path="res://assets/armas/miras/crosshair_outline_large.png" id="3_u2x11"]
+[ext_resource type="Texture2D" uid="uid://beqetqaguyhe0" path="res://assets/armas/rifle_red.png" id="4_ah88d"]
+[ext_resource type="AudioStream" uid="uid://bsk8ilyb2e6r2" path="res://assets/sonidos/disparo.mp3" id="5_if1q4"]
+[ext_resource type="AudioStream" uid="uid://cb6wxb0yg46bw" path="res://assets/sonidos/recarga.mp3" id="6_gvnsd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o78fa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wk0ey")
+}],
+"loop": true,
+"name": &"cargada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ah88d")
+}],
+"loop": true,
+"name": &"descargada",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2dy8"]
+radius = 8.0
+
+[node name="Arma" type="Area2D"]
+script = ExtResource("2_oedhu")
+
+[node name="Mira" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_u2x11")
+
+[node name="Apariencia" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o78fa")
+animation = &"cargada"
+offset = Vector2(71, 159.5)
+
+[node name="Recarga" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n2dy8")
+
+[node name="Tiro_Sonido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_if1q4")
+
+[node name="Recarga_Sonido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gvnsd")
+
+[connection signal="area_entered" from="." to="." method="_on_Objetivo_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Objetivo_exited"]
+[connection signal="timeout" from="Recarga" to="." method="_on_recarga_timeout"]

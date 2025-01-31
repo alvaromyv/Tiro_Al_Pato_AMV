@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8kck8w3nq3av"]
+
+[ext_resource type="Script" path="res://scripts/juego.gd" id="1_8vko3"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="2_dpeer"]
+[ext_resource type="PackedScene" uid="uid://cb7ysp8rd3ro1" path="res://escenas/Arma.tscn" id="2_qragp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_it0jr"]
+font_size = 25
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_8vko3")
+
+[node name="Arma" parent="." instance=ExtResource("2_qragp")]
+z_index = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_dpeer")
+
+[node name="Municion" type="HBoxContainer" parent="CanvasLayer/HUD"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Estadisticas" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="lbl_informacion" type="Label" parent="CanvasLayer/HUD/Estadisticas"]
+layout_mode = 2
+text = "Abatidos: %s
+Tiempo restante: %s
+"
+label_settings = SubResource("LabelSettings_it0jr")

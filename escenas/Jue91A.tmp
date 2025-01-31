@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8kck8w3nq3av"]
+
+[ext_resource type="Script" path="res://scripts/juego.gd" id="1_8vko3"]
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_8vko3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 152.0
+offset_bottom = 296.0
+
+[node name="lblContador" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 23.0

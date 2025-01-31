@@ -1,0 +1,189 @@
+[gd_scene load_steps=11 format=3 uid="uid://capetrjerydmi"]
+
+[ext_resource type="Script" path="res://scripts/resolucion.gd" id="1_kbniq"]
+[ext_resource type="Theme" uid="uid://ccr3xj3644dmh" path="res://menu.tres" id="2_0yost"]
+[ext_resource type="Texture2D" uid="uid://bmvvnoxnppv1d" path="res://assets/escenario/water2.png" id="3_hky3a"]
+[ext_resource type="Texture2D" uid="uid://mcstrji2fkwx" path="res://assets/escenario/water1.png" id="4_wtvj5"]
+[ext_resource type="Texture2D" uid="uid://bxx6065jphnwb" path="res://assets/escenario/grass2.png" id="5_cau6h"]
+[ext_resource type="Texture2D" uid="uid://cadmv268f76g7" path="res://assets/escenario/bg_wood.png" id="6_u7lkx"]
+[ext_resource type="Texture2D" uid="uid://d80n1uh2n0iq" path="res://assets/escenario/backgroundEmpty.png" id="7_8hu26"]
+[ext_resource type="AudioStream" uid="uid://bmv3mq1jrr6rh" path="res://assets/sonidos/click.ogg" id="8_m20s2"]
+[ext_resource type="FontFile" uid="uid://2afrstrnlcnc" path="res://assets/fuente/Frogie-Regular.ttf" id="9_q7enr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ndgnr"]
+font = ExtResource("9_q7enr")
+font_size = 25
+
+[node name="Resolucion" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kbniq")
+
+[node name="lbl_opciones_pantalla" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.0
+offset_top = 128.0
+offset_right = 328.0
+offset_bottom = 188.0
+grow_horizontal = 2
+theme = ExtResource("2_0yost")
+theme_type_variation = &"GraphFrameTitleLabel"
+theme_override_font_sizes/font_size = 60
+text = "CONFIGURACIÓN PANTALLA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Opciones" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.5
+offset_top = -89.0
+offset_right = 257.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0yost")
+alignment = 2
+
+[node name="Ventana" type="HBoxContainer" parent="Opciones"]
+layout_mode = 2
+
+[node name="lbl_modo_ventana" type="Label" parent="Opciones/Ventana"]
+layout_mode = 2
+theme = ExtResource("2_0yost")
+theme_override_font_sizes/font_size = 30
+text = "MODO VENTANA"
+
+[node name="btn_cambiar_modo_ventana" type="OptionButton" parent="Opciones/Ventana"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+selected = 1
+item_count = 4
+popup/item_0/text = "Full-Screen"
+popup/item_1/text = "Window Mode"
+popup/item_1/id = 1
+popup/item_2/text = "Bordeless Window"
+popup/item_2/id = 2
+popup/item_3/text = "Borderless Full-Screen"
+popup/item_3/id = 3
+
+[node name="Resolucion" type="HBoxContainer" parent="Opciones"]
+layout_mode = 2
+
+[node name="lbl_resolucion" type="Label" parent="Opciones/Resolucion"]
+layout_mode = 2
+theme = ExtResource("2_0yost")
+theme_override_font_sizes/font_size = 30
+text = "RESOLUCION"
+
+[node name="btn_cambiar_resolucion" type="OptionButton" parent="Opciones/Resolucion"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+item_count = 3
+popup/item_0/text = "1152 x 648"
+popup/item_1/text = "1280 x 720"
+popup/item_1/id = 1
+popup/item_2/text = "1920 x 1080"
+popup/item_2/id = 2
+
+[node name="Volver" type="Button" parent="Opciones"]
+layout_mode = 2
+theme = ExtResource("2_0yost")
+text = "VOLVER"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Mar1" type="TextureRect" parent="CanvasLayer"]
+z_index = -2
+offset_top = 442.0
+offset_right = 1152.0
+offset_bottom = 665.0
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_hky3a")
+stretch_mode = 1
+
+[node name="Mar2" type="TextureRect" parent="CanvasLayer"]
+z_index = -3
+offset_top = 389.0
+offset_right = 1152.0
+offset_bottom = 613.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("4_wtvj5")
+stretch_mode = 1
+
+[node name="Mar3" type="TextureRect" parent="CanvasLayer"]
+z_index = -4
+offset_top = 336.0
+offset_right = 1152.0
+offset_bottom = 560.0
+scale = Vector2(1, 0.540001)
+texture = ExtResource("3_hky3a")
+stretch_mode = 1
+
+[node name="Campo" type="TextureRect" parent="CanvasLayer"]
+z_index = -5
+offset_top = 250.0
+offset_right = 1152.0
+offset_bottom = 375.0
+texture = ExtResource("5_cau6h")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Madera" type="TextureRect" parent="CanvasLayer"]
+z_index = 1000
+offset_top = 523.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("6_u7lkx")
+expand_mode = 1
+
+[node name="Fondo" type="TextureRect" parent="CanvasLayer"]
+z_index = -15
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.5)
+texture = ExtResource("7_8hu26")
+stretch_mode = 1
+
+[node name="Clic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_m20s2")
+
+[node name="by Álvaro Moyano Vila" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -75.0
+offset_right = 250.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Creado y diseñado por Álvaro Moyano Vila"
+label_settings = SubResource("LabelSettings_ndgnr")
+horizontal_alignment = 1
+
+[connection signal="item_selected" from="Opciones/Ventana/btn_cambiar_modo_ventana" to="." method="on_modo_ventana_selected"]
+[connection signal="item_selected" from="Opciones/Resolucion/btn_cambiar_resolucion" to="." method="on_resolucion_item_selected"]
+[connection signal="pressed" from="Opciones/Volver" to="." method="_on_volver_pressed"]
